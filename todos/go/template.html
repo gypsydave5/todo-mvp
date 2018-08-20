@@ -1,0 +1,34 @@
+<html>
+<head>
+    <style>
+        li[data-done="true"] {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<h1>Todo MVP</h1>
+
+<form method="POST">
+    <label for="new-item">New item name</label>
+    <input type="text" name="new-item"/>
+    <input type="submit" value="Add new item"/>
+</form>
+
+<h2>Todo</h2>
+<ul>
+{{range .}}
+    {{if .Done}}
+        <li data-done="true">{{.Name}}</li>
+    {{else}}
+        <li>{{.Name}}
+            <form method="post" action="done">
+                <input type="hidden" name="item" value="{{.Name}}" />
+                <button onclick="submit()">Done</button>
+            </form>
+        </li>
+    {{end}}
+{{end}}
+</ul>
+</body>
+</html>
