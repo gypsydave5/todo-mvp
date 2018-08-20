@@ -11,7 +11,7 @@
 
 <form method="POST">
     <label for="new-item">New item name</label>
-    <input type="text" name="new-item"/>
+    <input type="text" name="new-item" required="required" pattern=".{3,}" required title="3 characters minimum"/>
     <input type="submit" value="Add new item"/>
 </form>
 
@@ -23,7 +23,7 @@
     {{else}}
         <li>{{.Name}}
             <form method="post" action="done">
-                <input type="hidden" name="item" value="{{.Name}}" />
+                <input type="hidden" name="item" value="{{.Name}}"/>
                 <button onclick="submit()">Done</button>
             </form>
         </li>
