@@ -23,6 +23,14 @@ func (t *TodoListServer) Check(name string) {
 	}
 }
 
+func (t *TodoListServer) UnCheck(name string) {
+	for i, item := range t.items {
+		if item.Name == name {
+			t.items[i].Done = false
+		}
+	}
+}
+
 func (t *TodoListServer) Delete(name string) {
 	var newList []Todo
 	for _, item := range t.items {
@@ -51,6 +59,8 @@ func (t *TodoListServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case "/done":
 			t.Check(item)
+		case "/not-done":
+			t.UnCheck(item)
 		case "/delete":
 			t.Delete(item)
 		default:

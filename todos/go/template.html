@@ -17,6 +17,7 @@
         <li class="done"><s>{{.Name}}</s> - Done
             <form method="post" action="done">
                 <input type="hidden" name="item" value="{{.Name}}"/>
+                <input type="submit" formaction="not-done" value="Mark not done '{{.Name}}'" />
                 <input type="submit" formaction="delete" value="Delete '{{.Name}}'" />
             </form>
         </li>
