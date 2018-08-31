@@ -5,8 +5,8 @@ item_name='build a todo app'
 
 ### helpers
 
-todo_item () {
-  li="
+make_todo_item () {
+  todo_item="
         <li>$1
             <form method=\"post\" action=\"done\">
                 <input type=\"hidden\" name=\"item\" value=\"$1\"/>
@@ -24,29 +24,31 @@ get_test () {
 	page=$(curl -s -XGET $app_uri)
   expected_content=$(<./golden_master.html)
 
-	if ! grep -q "$expected_content" <<< "$page"; then
+  printf "\tGET test... "
+  if ! grep -q "$(tr -s '\t ' <<<"$expected_content")" <<< "$(tr -s '\t ' <<<"$page")"; then
 		global_failures=true
-		printf "\tGET test... FAILED\n"
+		printf "FAILED\n"
 		printf "Expected $page\n"
 		printf "to contain $expected_content\n"
 	else
-		printf "\tGET test... PASSED\n"
+		printf "PASSED\n"
 	fi
 }
 
 ### New todo test
 new_todo_test () {
 	page=$(curl -L -s -F "item=$item_name" $app_uri)
-  todo_item "$item_name"
-	expected_content="$li"
+  make_todo_item "$item_name"
+	expected_content=$todo_item
 
-	if grep -q "$expected_content" <<< "$page"; then
+  printf "\tNew todo test..."
+  if ! grep -q "$(tr -s '\t ' <<<"$expected_content")" <<< "$(tr -s '\t ' <<<"$page")"; then
 		global_failures=true
-		printf "\tNew todo test... FAILED\n"
+		printf "FAILED\n"
 		printf "Expected $page\n"
 		printf "to contain $expected_content\n"
 	else
-		printf "\tNew todo test... PASSED\n"
+		printf "PASSED\n"
 	fi
 }
 
@@ -55,13 +57,14 @@ complete_todo_test () {
 	page=$(curl -L -s -F "item=$item_name" "$app_uri/done")
 	expected_content="<s>$item_name</s>"
 
+  printf "\tComplete todo test... "
 	if ! grep -q "$expected_content" <<< "$page"; then
 		global_failures=true
-		printf "\tComplete todo test... FAILED\n"
+		printf "FAILED\n"
 		printf "Expected $page\n"
 		printf "to contain $expected_content\n"
 	else
-		printf "\tComplete todo test... PASSED\n"
+		printf "PASSED\n"
 	fi
 }
 
@@ -70,13 +73,14 @@ delete_todo_test () {
 	page=$(curl -L -s -F "item=$item_name" "$app_uri/delete")
 	unexpected_content=$item_name
 
+	printf "\tDelete todo test... "
 	if grep -q "$unexpected_content" <<< "$page"; then
 		global_failures=true
-		printf "\tDelete todo test... FAILED\n"
+		printf "FAILED\n"
 		printf "Expected $page\n"
 		printf "not to contain $unexpected_content\n"
 	else
-		printf "\tDelete todo test... PASSED\n"
+		printf "PASSED\n"
 	fi
 }
 
@@ -87,3 +91,5 @@ get_test
 new_todo_test
 complete_todo_test
 delete_todo_test
+
+if [[ $global_failures = true ]]; then exit 1; fi
