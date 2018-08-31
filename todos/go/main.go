@@ -51,6 +51,7 @@ func (t *TodoListServer) RedirectToHome(w http.ResponseWriter) {
 }
 
 func (t *TodoListServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
 	switch r.Method {
 	case http.MethodGet:
 		t.tmpl.Execute(w, t.items)
@@ -71,9 +72,12 @@ func (t *TodoListServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	server := &TodoListServer{
-		tmpl: template.Must(template.ParseFiles("template.html")),
-	}
+	mux := http.NewServeMux()
 
-	http.ListenAndServe(":3000", server)
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	mux.Handle("/", &TodoListServer{
+		tmpl: template.Must(template.ParseFiles("template.html")),
+	})
+
+	http.ListenAndServe(":3000", mux)
 }

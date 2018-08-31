@@ -1,7 +1,9 @@
 <html>
   <head>
+      <link rel="stylesheet" href="/static/todo.css">
   </head>
   <body>
+  <section class="new-todo">
     <h1>Todo MVP</h1>
 
     <form method="POST">
@@ -9,7 +11,9 @@
       <input type="text" name="item" required="required" pattern=".{3,}" required title="3 characters minimum"/>
       <input type="submit" value="Add new item"/>
     </form>
+  </section>
 
+  <section class="items">
     <h2>Todo list</h2>
     <ul>
       {{range .}}
@@ -18,7 +22,7 @@
         <form method="post" action="/done">
           <input type="hidden" name="item" value="{{.Name}}"/>
           <input type="submit" formaction="/not-done" value="Mark not done '{{.Name}}'" />
-          <input type="submit" formaction="/delete" value="Delete '{{.Name}}'" />
+          <input class="delete" type="submit" formaction="/delete" value="Delete '{{.Name}}'" />
         </form>
       </li>
       {{else}}
@@ -26,11 +30,12 @@
         <form method="post" action="/done">
           <input type="hidden" name="item" value="{{.Name}}"/>
           <input type="submit" formaction="/done" value="Mark done '{{.Name}}'" />
-          <input type="submit" formaction="/delete" value="Delete '{{.Name}}'" />
+          <input class="delete" type="submit" formaction="/delete" value="Delete '{{.Name}}'" />
         </form>
       </li>
       {{end}}
       {{end}}
     </ul>
+  </section>
   </body>
 </html>
