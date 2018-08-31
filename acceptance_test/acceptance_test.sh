@@ -1,23 +1,34 @@
 #!/bin/bash
 
 app_uri=$1
-item_name="build a todo app"
+item_name='build a todo app'
+
+### helpers
+
+todo_item () {
+  li="
+        <li>$1
+            <form method=\"post\" action=\"done\">
+                <input type=\"hidden\" name=\"item\" value=\"$1\"/>
+                <input type=\"submit\" formaction=\"done\" value=\"Mark done '$1'\" />
+                <input type=\"submit\" formaction=\"delete\" value=\"Delete '$1'\" />
+            </form>
+        </li>
+  "
+}
+
 
 ### Get the page test
 
 get_test () {
 	page=$(curl -s -XGET $app_uri)
-  get_content=$(<./golden_master.html)
+  expected_content=$(<./golden_master.html)
 
 	if ! grep -q "$expected_content" <<< "$page"; then
-		pass_get=false
 		global_failures=true
-	fi
-
-	if [[ $pass_get = false ]]; then
 		printf "\tGET test... FAILED\n"
 		printf "Expected $page\n"
-		printf "to contain $get_content\n"
+		printf "to contain $expected_content\n"
 	else
 		printf "\tGET test... PASSED\n"
 	fi
@@ -26,9 +37,10 @@ get_test () {
 ### New todo test
 new_todo_test () {
 	page=$(curl -L -s -F "item=$item_name" $app_uri)
-	expected_content=$item_name
+  todo_item "$item_name"
+	expected_content="$li"
 
-	if ! grep -q "$expected_content" <<< "$page"; then
+	if grep -q "$expected_content" <<< "$page"; then
 		global_failures=true
 		printf "\tNew todo test... FAILED\n"
 		printf "Expected $page\n"
