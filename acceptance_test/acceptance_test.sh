@@ -7,7 +7,7 @@ item_name="build a todo app"
 
 get_test () {
 	page=$(curl -s -XGET $app_uri)
-	get_content="h1"
+  get_content=$(<./golden_master.html)
 
 	if ! grep -q "$expected_content" <<< "$page"; then
 		pass_get=false
