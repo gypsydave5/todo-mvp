@@ -14,7 +14,12 @@
 <ul>
 {{range .}}
     {{if .Done}}
-        <li><s>{{.Name}}</s> - Done</li>
+        <li class="done"><s>{{.Name}}</s> - Done
+            <form method="post" action="done">
+                <input type="hidden" name="item" value="{{.Name}}"/>
+                <input type="submit" formaction="delete" value="Delete '{{.Name}}'" />
+            </form>
+        </li>
     {{else}}
         <li>{{.Name}}
             <form method="post" action="done">
