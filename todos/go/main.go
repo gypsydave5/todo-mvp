@@ -75,5 +75,5 @@ func main() {
 		tmpl: template.Must(template.ParseFiles("template.html")),
 	}
 
-	http.ListenAndServe(":4000", server)
+	http.ListenAndServe(":3000", server)
 }
