@@ -24,11 +24,8 @@
         <li>{{.Name}}
             <form method="post" action="done">
                 <input type="hidden" name="item" value="{{.Name}}"/>
-                <input type="submit" value="Done" />
-            </form>
-            <form method="post" action="delete">
-                <input type="hidden" name="item" value="{{.Name}}"/>
-                <input type="submit" value="Delete" />
+                <input type="submit" formaction="done" value="Done" />
+                <input type="submit" formaction="delete" value="Delete" />
             </form>
         </li>
     {{end}}
