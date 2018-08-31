@@ -17,6 +17,7 @@ make_todo_item () {
   "
 }
 
+curl_post_options='-L -H "Content-Type: application/x-www-form-urlencoded" -s'
 
 ### Get the page test
 
@@ -37,7 +38,7 @@ get_test () {
 
 ### New todo test
 new_todo_test () {
-	page=$(curl -L -s -F "item=$item_name" $app_uri)
+	page=$(curl $curl_post_options -d "item=$item_name" $app_uri)
   make_todo_item "$item_name"
 	expected_content=$todo_item
 
@@ -54,7 +55,7 @@ new_todo_test () {
 
 ### Complete todo test
 complete_todo_test () {
-	page=$(curl -L -s -F "item=$item_name" "$app_uri/done")
+	page=$(curl $curl_post_options -d "item=$item_name" "$app_uri/done")
 	expected_content="<s>$item_name</s>"
 
   printf "\tComplete todo test... "
@@ -70,7 +71,7 @@ complete_todo_test () {
 
 ### Delete todo test
 delete_todo_test () {
-	page=$(curl -L -s -F "item=$item_name" "$app_uri/delete")
+	page=$(curl $curl_post_options -d "item=$item_name" "$app_uri/delete")
 	unexpected_content=$item_name
 
 	printf "\tDelete todo test... "
