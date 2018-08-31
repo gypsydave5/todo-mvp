@@ -1,10 +1,5 @@
 <html>
 <head>
-    <style>
-        li[data-done="true"] {
-            text-decoration: line-through;
-        }
-    </style>
 </head>
 <body>
 <h1>Todo MVP</h1>
@@ -19,7 +14,7 @@
 <ul>
 {{range .}}
     {{if .Done}}
-        <li data-done="true">{{.Name}}</li>
+        <li><s>{{.Name}}</s></li>
     {{else}}
         <li>{{.Name}}
             <form method="post" action="done">
