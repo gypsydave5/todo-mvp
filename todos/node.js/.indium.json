@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "webserver",
+      "type": "node",
+      "command": "node",
+      "inspect-brk": true
+    }
+  ]
+}
