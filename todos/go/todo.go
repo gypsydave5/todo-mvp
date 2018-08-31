@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"html/template"
+	"net/http"
 )
 
 type Todo struct {
@@ -15,7 +15,7 @@ type TodoListServer struct {
 	tmpl  *template.Template
 }
 
-func (t *TodoListServer) CheckItem(name string) {
+func (t *TodoListServer) Check(name string) {
 	for i, item := range t.items {
 		if item.Name == name {
 			t.items[i].Done = true
@@ -23,7 +23,17 @@ func (t *TodoListServer) CheckItem(name string) {
 	}
 }
 
-func (t *TodoListServer) AddItem(name string) {
+func (t *TodoListServer) Delete(name string) {
+	var newList []Todo
+	for _, item := range t.items {
+		if item.Name != name {
+			newList = append(newList, item)
+		}
+	}
+	t.items = newList
+}
+
+func (t *TodoListServer) Add(name string) {
 	t.items = append(t.items, Todo{name, false})
 }
 
@@ -37,13 +47,16 @@ func (t *TodoListServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 		t.tmpl.Execute(w, t.items)
 	case http.MethodPost:
-		if r.URL.Path == "/done" {
-			t.CheckItem(r.FormValue("item"))
-			t.RedirectToHome(w)
-		} else {
-			t.AddItem(r.FormValue("new-item"))
-			t.RedirectToHome(w)
+		item := r.FormValue("item")
+		switch r.URL.Path {
+		case "/done":
+			t.Check(item)
+		case "/delete":
+			t.Delete(item)
+		default:
+			t.Add(item)
 		}
+		t.RedirectToHome(w)
 	}
 }
 
