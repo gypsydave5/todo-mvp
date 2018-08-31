@@ -10,17 +10,17 @@
     <input type="submit" value="Add new item"/>
 </form>
 
-<h2>Todo</h2>
+<h2>Todo list</h2>
 <ul>
 {{range .}}
     {{if .Done}}
-        <li><s>{{.Name}}</s></li>
+        <li><s>{{.Name}}</s> - Done</li>
     {{else}}
         <li>{{.Name}}
             <form method="post" action="done">
                 <input type="hidden" name="item" value="{{.Name}}"/>
-                <input type="submit" formaction="done" value="Done" />
-                <input type="submit" formaction="delete" value="Delete" />
+                <input type="submit" formaction="done" value="Mark '{{.Name}}' as done" />
+                <input type="submit" formaction="delete" value="Delete '{{.Name}}'" />
             </form>
         </li>
     {{end}}
