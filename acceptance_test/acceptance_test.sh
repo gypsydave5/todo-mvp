@@ -43,7 +43,7 @@ complete_todo_test () {
 	page=$(curl -L -s -F "item=$item_name" "$app_uri/done")
 	expected_content="<s>$item_name</s>"
 
-	if grep -q "$expected_content" <<< "$page"; then
+	if ! grep -q "$expected_content" <<< "$page"; then
 		global_failures=true
 		printf "\tComplete todo test... FAILED\n"
 		printf "Expected $page\n"
