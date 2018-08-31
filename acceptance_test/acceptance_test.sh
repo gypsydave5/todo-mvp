@@ -1,6 +1,7 @@
 #!/bin/bash
 
 app_uri=$1
+item_name="build a todo app"
 
 ### Get the page test
 
@@ -8,7 +9,7 @@ get_test () {
 	page=$(curl -s -XGET $app_uri)
 	get_content="h1"
 
-	if ! grep -q "h1" <<< "$page"; then
+	if ! grep -q "$expected_content" <<< "$page"; then
 		pass_get=false
 		global_failures=true
 	fi
@@ -24,8 +25,8 @@ get_test () {
 
 ### New todo test
 new_todo_test () {
-	page=$(curl -L -s -F 'item=build todo app' $app_uri)
-	expected_content="build todo app"
+	page=$(curl -L -s -F "item=$item_name" $app_uri)
+	expected_content=$item_name
 
 	if ! grep -q "$expected_content" <<< "$page"; then
 		global_failures=true
@@ -37,8 +38,25 @@ new_todo_test () {
 	fi
 }
 
+### Delete todo test
+delete_todo_test () {
+	page=$(curl -L -s -F "item=$item_name" "$app_uri/delete")
+	unexpected_content=$item_name
+
+	if grep -q "$unexpected_content" <<< "$page"; then
+		global_failures=true
+		printf "\tDelete todo test... FAILED\n"
+		printf "Expected $page\n"
+		printf "not to contain $unexpected_content\n"
+	else
+		printf "\tDelete todo test... PASSED\n"
+	fi
+}
+
+
 ### RESULTS
 
 printf "\nRESULTS\n"
 get_test
 new_todo_test
+delete_todo_test
