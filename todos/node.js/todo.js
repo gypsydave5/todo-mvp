@@ -28,8 +28,6 @@ server.on('request', (request, response) => {
   case 'POST':
     parseForm(request).then(formdata => {
       const requestUrl = url.parse(request.url, true)
-      console.log(formdata)
-      console.log(request.headers)
       const item = formdata.item
 
       switch(requestUrl.pathname) {
@@ -53,13 +51,14 @@ server.on('request', (request, response) => {
 
 function parseForm(request) {
   return new Promise((fulfill, reject) => {
-    let body = '';
-    request.on('data', chunk => {
-      body += chunk.toString();
-    });
+    const chunks = []
+
+    request.on('data', chunk => chunks.push(chunk))
+
     request.on('end', () => {
-      fulfill(qs.parse(body));
-    });
+      const body = Buffer.concat(chunks).toString()
+      fulfill(qs.parse(body))
+    })
   })
 }
 
