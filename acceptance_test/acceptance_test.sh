@@ -38,6 +38,21 @@ new_todo_test () {
 	fi
 }
 
+### Complete todo test
+complete_todo_test () {
+	page=$(curl -L -s -F "item=$item_name" "$app_uri/done")
+	expected_content="<s>$item_name</s>"
+
+	if grep -q "$expected_content" <<< "$page"; then
+		global_failures=true
+		printf "\tComplete todo test... FAILED\n"
+		printf "Expected $page\n"
+		printf "to contain $expected_content\n"
+	else
+		printf "\tComplete todo test... PASSED\n"
+	fi
+}
+
 ### Delete todo test
 delete_todo_test () {
 	page=$(curl -L -s -F "item=$item_name" "$app_uri/delete")
@@ -53,10 +68,10 @@ delete_todo_test () {
 	fi
 }
 
-
 ### RESULTS
 
 printf "\nRESULTS\n"
 get_test
 new_todo_test
+complete_todo_test
 delete_todo_test
