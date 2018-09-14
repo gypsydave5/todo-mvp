@@ -167,7 +167,7 @@ li.todo:last-child {
 li.todo .item-name {
     flex: auto;
     margin: auto;
-    padding: 0 1em;
+    padding: 0 1rem;
 }
 
 .todo form input,
@@ -223,22 +223,7 @@ h1 {
     margin: 0;
 }
 
-.bold {
-    font-weight: 600;
-    letter-spacing: -1px;
-}
-
-.gray {
-    color: rgb(60,60,60);
-}
-
-.mt50 {
-    margin-top: 50px;
-}
-
-.visually-hidden {
-    width: 1px;
-    height: 1px;
-    position: absolute;
-    clip: rect(1px, 1px, 1px, 1px);
+h2 {
+    border-bottom: 1px solid black;
+    padding-left: 1rem
 }
