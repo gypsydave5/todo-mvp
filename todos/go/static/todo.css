@@ -154,9 +154,6 @@ section.items ul {
 
 li.todo {
     display: flex;
-}
-
-li.todo {
     border-bottom: 1px dotted black;
 }
 
@@ -225,5 +222,5 @@ h1 {
 
 h2 {
     border-bottom: 1px solid black;
-    padding-left: 1rem
+    padding: 0 0 1rem 1rem;
 }
