@@ -19,9 +19,7 @@ input[type="submit"] {
 }
 
 input {
-    width: 100%;
     box-sizing: border-box;
-    height: 38px;
     border: black solid 2px;
 }
 
@@ -69,8 +67,9 @@ section {
 
 .new-todo form {
     display: grid;
-    grid-template-columns: 75% 25%;
-    grid-template-rows: 25% 75%;
+    grid-template-columns: auto 29px;
+    grid-template-rows: 1rem auto;
+    gap: 1em;
 }
 
 .new-todo label[for="new-item"] {
@@ -82,8 +81,8 @@ section {
 .new-todo input#new-item {
     grid-row: 2 / span 1;
     grid-column: 1 / span 1;
-    margin: 1em;
-    padding: 1em;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
 .new-todo form input#add-new-item {
