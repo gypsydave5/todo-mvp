@@ -54,6 +54,18 @@ body {
     color: rgb(20,20,20);
 }
 
+section {
+    border: white solid 1px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: auto;
+    background-color: transparent;
+    padding: 25px;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .margin-0 {
     margin: 0;
@@ -72,30 +84,6 @@ body {
     align-content: center;
 }
 
-.todo p {
-    max-width: 300px;
-}
-
-.section {
-    background-image: conic-gradient(
-        rgba(250,250,250,.4),
-        rgba(250,250,250,.4) 40.5deg,
-        rgba(250,250,250,.55) 40.5deg,
-        rgba(250,250,250,.4)
-    );
-    border: white solid 1px;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: auto;
-    background-color: transparent;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
-    width: -moz-fit-content;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 .button-container {
     float: right;
@@ -134,10 +122,38 @@ p {
     color: white
 }
 
+section.items {
+    width: 40em;
+}
+
+section.items ul {
+    margin: 0;
+    padding: 0;
+}
+
+li.todo {
+    display: flex;
+}
+
+li.todo {
+    border-bottom: 1px dotted black;
+}
+
+li.todo:last-child {
+    border-bottom: none;
+}
+
+li.todo .item-name {
+    flex: auto;
+    margin: auto;
+    padding: 0 1em;
+}
+
 .todo form input {
     width: 29px;
     height: 29px;
     padding: 0;
+    margin: 1em;
 
     background-repeat: no-repeat;
     background-size: contain;
@@ -148,6 +164,10 @@ p {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.todo p {
+    max-width: 300px;
 }
 
 .todo form input.delete {

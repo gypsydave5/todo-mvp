@@ -20,12 +20,18 @@
       {{if .Done}}
       <li class="todo done">
         <span class="item-name">
-          <s>{{.Name}}</s> - Done
+          <s>{{.Name}}</s>
         </span>
         <form method="post" action="/done">
           <input type="hidden" name="item" value="{{.Name}}"/>
-          <input class="uncomplete" type="submit" formaction="/not-done" value="Mark not done '{{.Name}}'" />
-          <input class="delete" type="submit" formaction="/delete" value="Delete '{{.Name}}'" />
+          <input class="uncomplete"
+                 type="submit"
+                 formaction="/not-done"
+                 value="Mark not done '{{.Name}}'" />
+          <input class="delete"
+                 type="submit"
+                 formaction="/delete"
+                 value="Delete '{{.Name}}'" />
         </form>
       </li>
       {{else}}

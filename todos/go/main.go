@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"fmt"
 )
 
 type Todo struct {
@@ -79,5 +80,6 @@ func main() {
 		tmpl: template.Must(template.ParseFiles("template.html")),
 	})
 
+	fmt.Println("Listening on port 3000")
 	http.ListenAndServe(":3000", mux)
 }
