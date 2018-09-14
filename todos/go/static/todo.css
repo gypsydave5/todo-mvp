@@ -1,14 +1,11 @@
 :root {
     --green: rgb(110,203,153);
+    box-sizing: border-box;
 }
 
 html {
     padding: 0;
     margin: 0;
-}
-
-form {
-    max-width: 416px;
 }
 
 label {
@@ -34,7 +31,6 @@ body {
     padding: 0;
     padding-top: 50px;
     padding-bottom: 50px;
-    display: grid;
     align-content: center;
     box-sizing: border-box;
     margin: 0;
@@ -61,14 +57,39 @@ section {
     grid-template-columns: auto;
     background-color: transparent;
     padding: 25px;
-    width: -moz-fit-content;
-    width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    width: 40em;
 }
 
 .margin-0 {
     margin: 0;
+}
+
+
+.new-todo form {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 25% 75%;
+}
+
+.new-todo label[for="new-item"] {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+    margin: auto 1em;
+}
+
+.new-todo input#new-item {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+    margin: 1em;
+    padding: 1em;
+}
+
+.new-todo form input#add-new-item {
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+    margin: auto;
 }
 
 .todos {
@@ -149,16 +170,15 @@ li.todo .item-name {
     padding: 0 1em;
 }
 
-.todo form input {
+.todo form input,
+.new-todo form input#add-new-item {
     width: 29px;
     height: 29px;
     padding: 0;
-    margin: 1em;
 
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    grid-column: 3 / 4;
 
     /* hide text */
     text-indent: 100%;
@@ -166,21 +186,15 @@ li.todo .item-name {
     overflow: hidden;
 }
 
-.todo p {
-    max-width: 300px;
+.todo form input {
+    grid-column: 3 / 4;
+    margin: 1em;
 }
 
-.todo form input.delete {
-    background-image: url('trashcan.svg');
-}
-
-.todo form input.complete {
-    background-image: url('check.svg');
-}
-
-.todo form input.uncomplete {
-    background-image: url('x.svg');
-}
+input#add-new-item { background-image: url('plus.svg'); }
+.todo form input.delete { background-image: url('trashcan.svg'); }
+.todo form input.complete { background-image: url('check.svg'); }
+.todo form input.uncomplete { background-image: url('x.svg'); }
 
 .done {
     order: 1;
@@ -204,9 +218,7 @@ li.todo .item-name {
 h1 {
     font-weight: 200;
     word-spacing: -2px;
-    color: rgb(60,60,60);
-    position: absolute;
-    top: 15px;
+    color: rgb(60,60,60); position: absolute; top: 15px;
     left: 15px;
     margin: 0;
 }
