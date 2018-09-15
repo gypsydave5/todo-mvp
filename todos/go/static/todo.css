@@ -34,13 +34,7 @@ body {
 }
 
 label {
-    font-size: 15px;
-}
-
-input[type="submit"] {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 10px;
+    font-size: 0.8rem;
 }
 
 input {
