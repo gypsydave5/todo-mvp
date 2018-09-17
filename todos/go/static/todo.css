@@ -1,10 +1,10 @@
 :root {
-    box-sizing: border-box;
     --text-color: rgb(20,20,20);
     --border-color: black;
     --title-color: rgb(60,60,60);
     --done-color: rgb(200,200,200);
     --background-color: white;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
@@ -12,8 +12,6 @@
 body {
     min-height: 100vh;
     padding: 0;
-    padding-top: 50px;
-    padding-bottom: 50px;
     align-content: center;
     margin: 0;
     font-family: system-ui,
@@ -28,6 +26,7 @@ body {
                  'Helvetica Neue',
                  sans-serif;
     line-height: 1.3rem;
+    font-size: 24px;
 
     background-color: var(--background-color);
     color: var(--text-color);
@@ -125,9 +124,12 @@ li.todo .item-name {
 }
 
 input#add-new-item { background-image: url('plus.svg'); }
-.todo form input.delete { background-image: url('trashcan.svg'); }
-.todo form input.complete { background-image: url('check.svg'); }
-.todo form input.uncomplete { background-image: url('x.svg'); }
+.todo form input.delete {
+    background-image: url('trashcan.svg');
+    border: none;
+}
+.todo form input.complete { background-image: none; }
+.todo form input.uncomplete { background-image: url('check.svg'); }
 
 .done {
     color: var(--done-color);

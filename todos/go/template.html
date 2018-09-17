@@ -5,17 +5,15 @@
     <link rel="stylesheet" href="/static/todo.css">
   </head>
   <body>
+    <h1>Todo MVP</h1>
     <section class="new-todo">
-      <h1>Todo MVP</h1>
-
       <form method="POST">
-        <label for="new-item">New item name</label>
         <input type="text"
                id="new-item"
                name="item"
-               required="required"
                pattern=".{3,}"
                required
+               aria-label="Write a new todo item"
                title="3 characters minimum"/>
         <input type="submit"
                value="Add new item"
