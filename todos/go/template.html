@@ -30,17 +30,16 @@
           <span class="item-name">
             <s>{{.Name}}</s>
           </span>
-          <form method="post" action="/done">
-            <input type="hidden"
-                   name="item"
-                   value="{{.Name}}"/>
+          <form method="post" action="/not-done">
+            <input type="hidden" name="item" value="{{.Name}}"/>
             <input class="uncomplete"
                    type="submit"
-                   formaction="/not-done"
                    value="Mark not done '{{.Name}}'" />
+          </form>
+          <form method="post" action="/delete">
+            <input type="hidden" name="item" value="{{.Name}}"/>
             <input class="delete"
                    type="submit"
-                   formaction="/delete"
                    value="Delete '{{.Name}}'" />
           </form>
         </li>
@@ -50,16 +49,15 @@
             {{.Name}}
           </span>
           <form method="post" action="/done">
-            <input type="hidden"
-                   name="item"
-                   value="{{.Name}}"/>
+            <input type="hidden" name="item" value="{{.Name}}"/>
             <input class="complete"
                    type="submit"
-                   formaction="/done"
                    value="Mark done '{{.Name}}'" />
+          </form>
+          <form method="post" action="/delete">
+            <input type="hidden" name="item" value="{{.Name}}"/>
             <input class="delete"
                    type="submit"
-                   formaction="/delete"
                    value="Delete '{{.Name}}'" />
           </form>
         </li>
