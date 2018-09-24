@@ -46,7 +46,7 @@ section {
     padding: 1.5rem;
     margin-left: auto;
     margin-right: auto;
-    width: 40rem;
+    max-width: 40rem;
 }
 
 .new-todo form {
