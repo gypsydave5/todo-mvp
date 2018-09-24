@@ -72,27 +72,39 @@ section {
     height: 100%;
 }
 
-section.items ul {
+ul {
     margin: 0;
     padding: 0;
 }
 
-li.todo {
+ul:empty::after {
+    content: "You've not added any todos to the list. Use the box above to add a new todo.";
+    font-size: 1rem;
+    margin: 1rem;
+    font-style: italic;
+    border: 2px dotted black;
+    padding: 0.5rem;
+    display: block;
+    text-align: justify;
+    text-align-last: center;
+}
+
+li {
     display: flex;
     border-bottom: 1px dotted var(--border-color);
 }
 
-li.todo:last-child {
+li:last-child {
     border-bottom: none;
 }
 
-li.todo .item-name {
+li .item-name {
     flex: auto;
     margin: auto;
     padding: 0 1rem;
 }
 
-.todo form input,
+li form input,
 .new-todo form input#add-new-item {
     width: 29px;
     height: 29px;
@@ -109,15 +121,14 @@ li.todo .item-name {
 }
 
 .todo form input {
-    grid-column: 3 / 4;
     margin: 1em;
 }
 
-input#add-new-item { background-image: url('plus.svg'); }
 .todo form input.delete {
     background-image: url('trashcan.svg');
     border: none;
 }
+input#add-new-item { background-image: url('plus.svg'); }
 .todo form input.complete { background-image: none; }
 .todo form input.uncomplete { background-image: url('check.svg'); }
 
@@ -131,12 +142,8 @@ input#add-new-item { background-image: url('plus.svg'); }
 
 h1 {
     font-weight: 200;
-    word-spacing: -2px;
     color: var(--title-color);
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    margin: 0;
+    margin: 2rem;
 }
 
 h2 {

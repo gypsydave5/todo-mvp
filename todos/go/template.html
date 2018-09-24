@@ -21,11 +21,9 @@
       </form>
     </section>
 
-    <section class="items todos">
+    <section class="items">
       <h2>Todo list</h2>
-      <ul>
-        {{range .}}
-        {{if .Done}}
+      <ul>{{range .}}{{if .Done}}
         <li class="todo done">
           <span class="item-name">
             <s>{{.Name}}</s>
@@ -43,7 +41,7 @@
                    value="Delete '{{.Name}}'" />
           </form>
         </li>
-        {{else}}
+{{else}}
         <li class="todo">
           <span class="item-name">
             {{.Name}}
@@ -61,9 +59,7 @@
                    value="Delete '{{.Name}}'" />
           </form>
         </li>
-        {{end}}
-        {{end}}
-      </ul>
+{{end}}{{end}}</ul>
     </section>
   </body>
 </html>
