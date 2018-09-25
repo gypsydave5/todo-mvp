@@ -26,7 +26,7 @@ get_test () {
   expected_content=$(<./golden_master.html)
 
   printf "\tGET test... "
-  if ! grep -q "$(tr -s '\t ' <<<"$expected_content")" <<< "$(tr -s '\t ' <<<"$page")"; then
+  if ! grep -q "$(tr -s '\t ' <<<$expected_content)" <<< "$(tr -s '\t ' <<<$page)"; then
 		global_failures=true
 		printf "FAILED\n"
 		printf "Expected $page\n"
@@ -43,7 +43,7 @@ new_todo_test () {
 	expected_content=$todo_item
 
   printf "\tNew todo test..."
-  if ! grep -q "$(tr -s '\t ' <<<"$expected_content")" <<< "$(tr -s '\t ' <<<"$page")"; then
+  if ! grep -q "$(tr -s '\t ' <<<$expected_content )" <<< "$(tr -s '\t ' <<<$page)"; then
 		global_failures=true
 		printf "FAILED\n"
 		printf "Expected $page\n"
@@ -59,7 +59,7 @@ complete_todo_test () {
 	expected_content="<s>$item_name</s>"
 
   printf "\tComplete todo test... "
-	if ! grep -q "$expected_content" <<< "$page"; then
+	if ! grep -q $expected_content <<< $page; then
 		global_failures=true
 		printf "FAILED\n"
 		printf "Expected $page\n"
