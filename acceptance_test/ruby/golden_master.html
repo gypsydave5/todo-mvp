@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo MVP</title>
+    <link rel="stylesheet" href="/static/todo.css">
+  </head>
+  <body>
+    <h1>Todo MVP</h1>
+    <section class="new-todo">
+      <form method="POST">
+        <input type="text"
+               id="new-item"
+               name="item"
+               pattern=".{3,}"
+               required
+               aria-label="Write a new todo item"
+               title="3 characters minimum"/>
+        <input type="submit"
+               value="Add new item"
+               id="add-new-item"/>
+      </form>
+    </section>
+
+    <section class="items">
+      <h2>Todo list</h2>
+      <ul></ul>
+    </section>
+  </body>
+</html>
