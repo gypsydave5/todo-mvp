@@ -1,41 +1,44 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
-	"fmt"
+	"strconv"
 )
 
 type Todo struct {
+	Id   int
 	Name string
 	Done bool
 }
 
 type TodoListServer struct {
-	items []Todo
-	tmpl  *template.Template
+	items  []Todo
+	nextId int
+	tmpl   *template.Template
 }
 
-func (t *TodoListServer) Check(name string) {
+func (t *TodoListServer) Check(id int) {
 	for i, item := range t.items {
-		if item.Name == name {
+		if item.Id == id {
 			t.items[i].Done = true
 		}
 	}
 }
 
-func (t *TodoListServer) UnCheck(name string) {
+func (t *TodoListServer) UnCheck(id int) {
 	for i, item := range t.items {
-		if item.Name == name {
+		if item.Id == id {
 			t.items[i].Done = false
 		}
 	}
 }
 
-func (t *TodoListServer) Delete(name string) {
+func (t *TodoListServer) Delete(id int) {
 	var newList []Todo
 	for _, item := range t.items {
-		if item.Name != name {
+		if item.Id != id {
 			newList = append(newList, item)
 		}
 	}
@@ -43,7 +46,8 @@ func (t *TodoListServer) Delete(name string) {
 }
 
 func (t *TodoListServer) Add(name string) {
-	t.items = append(t.items, Todo{name, false})
+	t.items = append(t.items, Todo{t.nextId, name, false})
+	t.nextId++
 }
 
 func (t *TodoListServer) RedirectToHome(w http.ResponseWriter) {
@@ -52,19 +56,19 @@ func (t *TodoListServer) RedirectToHome(w http.ResponseWriter) {
 }
 
 func (t *TodoListServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
 	switch r.Method {
 	case http.MethodGet:
 		t.tmpl.Execute(w, t.items)
 	case http.MethodPost:
 		item := r.FormValue("item")
+		id, _ := strconv.Atoi(item)
 		switch r.URL.Path {
 		case "/done":
-			t.Check(item)
+			t.Check(id)
 		case "/not-done":
-			t.UnCheck(item)
+			t.UnCheck(id)
 		case "/delete":
-			t.Delete(item)
+			t.Delete(id)
 		default:
 			t.Add(item)
 		}
