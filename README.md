@@ -156,3 +156,4 @@ It is nothing to do with the Android architecture MVP.
 [MVP]: https://en.wikipedia.org/wiki/Minimum_viable_product
 [MVPlayer]: https://en.wikipedia.org/wiki/Most_valuable_player
 [contributing]: ./CONTRIBUTING.md
+[SPA]: https://en.wikipedia.org/wiki/Single-page_application
