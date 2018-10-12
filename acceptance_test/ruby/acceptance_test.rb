@@ -3,7 +3,7 @@
 require 'faraday'
 require 'faraday_middleware'
 require 'nokogumbo'
-require 'minitest'
+require 'minitest/autorun'
 
 class TodoMVPAcceptance < Minitest::Test
   i_suck_and_my_tests_are_order_dependent!
