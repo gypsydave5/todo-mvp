@@ -119,6 +119,11 @@ version of the application. Which is a nice bonus.
 There is an acceptance test which asserts on the HTML and the API of the
 application. See the [Readme][acceptanceReadme] for details.
 
+## Contributing
+
+Please see the [CONTRIBUTING.md][contributing] documentation for details
+about how you can help.
+
 ## Prior Art
 
 This started with an [angry blog post on Dev.To][rant].
@@ -132,6 +137,8 @@ It was inspired by:
   - Chris James's [The Web I Want][CJWeb]
 
 It is nothing to do with the Android architecture MVP.
+
+## Wall of Inspirational Quotes
 
 > It is up to developers to make their sites work (or at least fallback gracefully) whether JavaScript is or isn't available. The reason for JavaScript being unavailable, whether it's user choice, network conditions or browser interventions, is unimportant. Building a resilient experience is the only way we can serve our users best.
 
@@ -148,3 +155,4 @@ It is nothing to do with the Android architecture MVP.
 [CSSZG]: http://www.csszengarden.com/
 [MVP]: https://en.wikipedia.org/wiki/Minimum_viable_product
 [MVPlayer]: https://en.wikipedia.org/wiki/Most_valuable_player
+[contributing]: ./CONTRIBUTING.md
