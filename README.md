@@ -10,17 +10,17 @@ Valuable Player_][MVPlayer] in your web development toolkit. I like to think so!
 
 ## META-TODO
 
-    - [x] Working Todo-MVP application
-    - [x] Nice CSS
-    - [x] Good a11y
-    - [x] Simple acceptance test
-    - [ ] Best in class a11y
-    - [ ] Implement in multiple languages
-    - [ ] Multiple CSS files
-    - [ ] Automated deployment
-    - [ ] Automate the acceptance test
-    - [ ] ???
-    - [ ] PROFIT!
+- [x] Working Todo-MVP application
+- [x] Nice CSS
+- [x] Good a11y
+- [x] Simple acceptance test
+- [ ] Best in class a11y
+- [ ] Implement in multiple languages
+- [ ] Multiple CSS files
+- [ ] Automated deployment
+- [ ] Automate the acceptance test
+- [ ] ???
+- [ ] PROFIT!
 
 ## The Todo Application
 
