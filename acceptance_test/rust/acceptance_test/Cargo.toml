@@ -1,0 +1,10 @@
+[package]
+name = "acceptance_test"
+version = "0.1.0"
+authors = ["David Wickes <dave.wickes@gmail.com>"]
+
+[dependencies]
+hyper = "0.12"
+reqwest = "0.9"
+scraper = "0.7"
+select = "0.4.2"
