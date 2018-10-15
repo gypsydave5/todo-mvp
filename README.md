@@ -59,19 +59,22 @@ possible solution to writing a todo application isn't a [single page app][SPA];
 it's written in server side code.
 
 'Simple' does not mean we go back to banging the bytes together in raw assembly
-code, or that we 'build our own framework' (whatever that means).
+code, or that we 'build our own framework' (whatever that means). In fact, we
+could probably argue all day over what exactly 'simple' means. But this project
+represents my idea of simplicity in building an web application - perhaps you'll
+agree
 
 ## Constraints
 
-The following constraints are followed when writing an implementation:
+The following constraints are been followed:
 
-### No JavaScript
+#### No JavaScript
 
-I love JavaScript - I've written it in all of my work and a lot in my spare
-time. It's wonderful, and fun, and empowering - warts and all. But it's not
-necessary to write a simple Todo application, and so we won't use it here.
+I love JavaScript - I've written it professionally for my entire career. It's
+wonderful, and fun, and empowering - warts and all. But it's not necessary to
+write a simple Todo application, and so we won't use it here.
 
-### No Frameworks
+#### No Frameworks
 
 By 'framework' I mean software which requires certain folder structures,
 configuration files, special commands to run it, and a vague feeling that you're
@@ -89,11 +92,33 @@ question][frameworkLibrarySO] if you want more nuance and better links
 As there is no JavaScript, there will be naturally be no front-end frameworks or
 libraries (React, Angular _et al._).
 
-### The same API
+#### No Persistence
 
-Each implementation should conform to the same API as outlined in the acceptance test.
+If we were building a _real_ todo application, we would save the todo
+information to something with a lifespan longer than the running application. As
+it is, I've taken the decision that to do so would add a fair ammount of
+incidental complexity, and so the data is stored in memory.
 
-### Identical, accessible HTML 5
+But, as the interface for accessing the todo information is well defined, it
+should be trivial to swap the in memory implementation out for something else
+(database, file on disk, etc.).
+
+#### No Sessions
+
+Again, a 'real' application would have some way of identifying each user
+uniquely and associating them with the items they create. This would commonly be
+done with another data store and browser cookies.
+
+I was definitely in two minds as to whether an implementation should support
+user sessions, but in the end concluded that it would digress from the core of
+the project. I may think differently in the future.
+
+#### The same API
+
+Each implementation (when there are more than one) should conform to the same
+API as documented in the acceptance test.
+
+#### Identical, accessible HTML 5
 
 Firstly, every implementation should render the same HTML.
 
@@ -117,7 +142,7 @@ version of the application. Which is a nice bonus.
 ## Acceptance Testing
 
 There is an acceptance test which asserts on the HTML and the API of the
-application. See the [Readme][acceptanceReadme] for details.
+application. See the acceptance test [README.md][acceptanceReadme] for details.
 
 ## Contributing
 
