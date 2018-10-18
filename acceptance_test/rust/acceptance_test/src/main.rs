@@ -14,7 +14,7 @@ pub fn main() {
 
 }
 
-fn golden_master_html() -> Html {
+fn golden_master_page() -> Html {
     let mut file = File::open("./golden_master.html").unwrap();
 
     let mut file_contents = String::new();
@@ -23,12 +23,31 @@ fn golden_master_html() -> Html {
     Html::parse_document(&file_contents)
 }
 
-fn actual_website_html() -> Html {
+fn page() -> Html {
     let mut response = reqwest::get("http://localhost:3000").unwrap();
     let body = response.text().unwrap();
 
     Html::parse_document(&body)
 }
+
+fn add_a_todo(name: &str) {
+    let params = [("item", name)];
+    let client = client();
+
+    client.post("http://localhost:3000")
+        .form(&params)
+        .send()
+        .unwrap();
+}
+
+
+fn client() -> reqwest::Client {
+    reqwest::Client::builder()
+        .redirect(reqwest::RedirectPolicy::none())
+        .build()
+        .unwrap()
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -36,8 +55,14 @@ mod tests {
 
     #[test]
     fn html_is_as_expected() {
-        let expected = golden_master_html();
-        let actual = actual_website_html();
+        let expected = golden_master_page();
+        let actual = page();
         assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn can_add_a_todo() {
+        add_a_todo("tony");
+        let page = page();
     }
 }

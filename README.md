@@ -24,12 +24,11 @@ Valuable Player_][MVPlayer] in your web development toolkit. I like to think so!
 
 ## The Todo Application
 
-The project consists of the following:
+The project consist (or will consist) of the following:
 
-  - Many Todo application, written in multiple languages, all
+  - Many Todo applications, written in multiple languages, all
   each serving the same HTML and implementing the same API.
   - An acceptance test to confirm that the application does the above
-  - This README
 
 ## Principles
 
@@ -44,12 +43,13 @@ applications in - Ruby on Rails, Spring, Django for example. But I also believe
 that for many of the simple (and not so simple) applications that we build on
 the Web we do not need them.
 
-That is to say that, while I think these frameworks have their place, they are
-for the most part cumbersome and obfuscating, often no better than using simpler
-libraries and technologies and often a lot worse.
+That is to say that, while I think these frameworks have their place, they can
+be cumbersome and obfuscating, often no better than using simpler libraries and
+technologies and often a lot worse.
 
-The subject of this demonstration is the Todo app, implemented in a server side
-language and presented in HTML and CSS.
+The subject of this demonstration is the 'todo app', an application for keeping
+track of a list of tasks and marking them as completed, implemented in a server
+side language and presented in HTML and CSS.
 
 ## What this is not
 
@@ -62,7 +62,7 @@ it's written in server side code.
 code, or that we 'build our own framework' (whatever that means). In fact, we
 could probably argue all day over what exactly 'simple' means. But this project
 represents my idea of simplicity in building an web application - perhaps you'll
-agree
+agree.
 
 ## Constraints
 
