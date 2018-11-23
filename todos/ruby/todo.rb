@@ -98,4 +98,4 @@ def new_server
   Rack::Static.new(app, :urls => ["/css"], :root => "public")
 end
 
-Rack::Handler::WEBrick.run new_server, Port: 4000
+Rack::Handler::WEBrick.run new_server, Port: 3000
