@@ -144,6 +144,7 @@ h1 {
     font-weight: 200;
     color: var(--title-color);
     margin: 2rem;
+    display: none;
 }
 
 h2 {
