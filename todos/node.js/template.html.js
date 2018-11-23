@@ -1,38 +1,73 @@
-module.exports = todos => `<html>
+module.exports = todos => `<!DOCTYPE html>
+<html>
   <head>
+    <title>Todo MVP</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/todo.css">
   </head>
   <body>
     <h1>Todo MVP</h1>
+    <section class="new-todo">
+      <form method="POST">
+        <input type="text"
+               id="new-item"
+               name="item"
+               pattern=".{3,}"
+               required
+               aria-label="Write a new todo item"
+               title="3 characters minimum"/>
+        <input type="submit"
+               value="Add new item"
+               id="add-new-item"/>
+      </form>
+    </section>
 
-    <form method="POST">
-      <label for="new-item">New item name</label>
-      <input type="text" name="item" required="required" pattern=".{3,}" required title="3 characters minimum"/>
-      <input type="submit" value="Add new item"/>
-    </form>
-
-    <h2>Todo list</h2>
-    <ul>
-      ${todos.map(renderTodo).join('\n')}
-    </ul>
+    <section class="items">
+      <h2>Todo list</h2>
+      <ul>${todos.map(renderTodo).join('\n')}</ul>
+    </section>
   </body>
-</html>`
+</html>
+`
 
 function renderTodo (todo) {
   if (todo.done) {
-      return `<li class="done"><s>${todo.name}</s> - Done
-        <form method="post" action="/done">
-          <input type="hidden" name="item" value="${todo.name}"/>
-          <input type="submit" formaction="/not-done" value="Mark not done '${todo.name}'" />
-          <input type="submit" formaction="/delete" value="Delete '${todo.name}'" />
-        </form>
-      </li>`
+    return `
+        <li class="todo done">
+          <span class="item-name">
+            <s>${todo.name}</s>
+          </span>
+          <form method="post" action="/not-done">
+            <input type="hidden" name="item" value="${todo.id}"/>
+            <input class="uncomplete"
+                   type="submit"
+                   value="Mark not done '${todo.name}'" />
+          </form>
+          <form method="post" action="/delete">
+            <input type="hidden" name="item" value="${todo.id}"/>
+            <input class="delete"
+                   type="submit"
+                   value="Delete '${todo.name}'" />
+          </form>
+        </li>`
   } else {
-      return `<li>${todo.name}
-        <form method="post" action="/done">
-          <input type="hidden" name="item" value="${todo.name}"/>
-          <input type="submit" formaction="/done" value="Mark done '${todo.name}'" />
-          <input type="submit" formaction="/delete" value="Delete '${todo.name}'" />
-        </form>
-      </li>`
+    return `
+        <li class="todo">
+          <span class="item-name">
+            ${todo.name}
+          </span>
+          <form method="post" action="/done">
+            <input type="hidden" name="item" value="${todo.id}"/>
+            <input class="complete"
+                   type="submit"
+                   value="Mark done '${todo.name}'" />
+          </form>
+          <form method="post" action="/delete">
+            <input type="hidden" name="item" value="${todo.id}"/>
+            <input class="delete"
+                   type="submit"
+                   value="Delete '${todo.name}'" />
+          </form>
+        </li>`
   }
 }

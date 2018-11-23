@@ -5,18 +5,23 @@ const template = require('./template.html.js')
 
 let todos = []
 
-function add (item) {
-  todos.push({ name: item, done: false })
+const nextId = (() => {
+  let next = 0
+  return () => next++
+})()
+
+function add (name) {
+  todos.push({ name: name, done: false, id: nextId() })
 }
 
-function toggle (item) {
-  todos = todos.map(todo => todo.name === item
-    ? { name: item, done: !todo.done }
+function toggle (id) {
+  todos = todos.map(todo => todo.id === id
+    ? { name: todo.name, done: !todo.done, id: id }
     : todo)
 }
 
-function remove (item) {
-  todos = todos.filter(todo => todo.name !== item)
+function remove (id) {
+  todos = todos.filter(todo => todo.id !== id)
 }
 
 const server = http.createServer()
@@ -29,19 +34,21 @@ server.on('request', (request, response) => {
       parseForm(request).then(formdata => {
         const requestUrl = url.parse(request.url, true)
         const item = formdata.item
+        const name = item
+        const id = parseInt(item)
 
         switch (requestUrl.pathname) {
           case '/done':
-            toggle(item)
+            toggle(id)
             break
           case '/not-done':
-            toggle(item)
+            toggle(id)
             break
           case '/delete':
-            remove(item)
+            remove(id)
             break
           default:
-            add(item)
+            add(name)
             break
         }
         redirectToHome(response)
