@@ -2,11 +2,12 @@ require 'rack'
 require 'erb'
 
 class Todo
-  attr_reader :name, :done
+  attr_reader :name, :done, :id
 
-  def initialize name
+  def initialize name, id
     @name = name
     @done = false
+    @id = id
   end
 
   def toggle
@@ -22,19 +23,21 @@ class TodoList
 
   def initialize
     @todos = []
+    @next_id = 0
   end
 
   def add name
-    @todos.push(Todo.new(name))
+    @todos.push(Todo.new(name, @next_id))
+    @next_id += 1
   end
 
-  def delete name
-    @todos.delete_if {|todo| todo.name == name}
+  def delete id
+    @todos.delete_if {|todo| todo.id == id}
   end
 
-  def toggle name
+  def toggle id
     @todos = @todos.map do |todo|
-      if todo.name == name
+      if todo.name == id
         todo.toggle
       else
         todo
@@ -58,15 +61,17 @@ def routes request
     show_todos_handler
   when 'POST'
     item = request[:item]
+    name = item
+    id = item.to_i
     case request.path
     when '/done'
-      $todos.toggle item
+      $todos.toggle id
     when '/not-done'
-      $todos.toggle item
+      $todos.toggle id
     when '/delete'
-      $todos.delete item
+      $todos.delete id
     else
-      $todos.add item
+      $todos.add name
     end
     redirect "/"
   else
