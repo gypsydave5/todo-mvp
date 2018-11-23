@@ -37,7 +37,7 @@ class TodoList
 
   def toggle id
     @todos = @todos.map do |todo|
-      if todo.name == id
+      if todo.id == id
         todo.toggle
       else
         todo
@@ -100,7 +100,7 @@ def new_server
   end
 
   # to statically serve CSS
-  Rack::Static.new(app, :urls => ["/css"], :root => "public")
+  Rack::Static.new(app, :urls => ["/static"])
 end
 
 Rack::Handler::WEBrick.run new_server, Port: 3000
