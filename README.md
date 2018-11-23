@@ -53,16 +53,14 @@ side language and presented in HTML and CSS.
 
 ## What this is not
 
-This is not a Luddite call to smash the frames and go back to hand weaving the
-Web. That would be stupid. Rather, the idea is to _keep it simple_. The simplest
-possible solution to writing a todo application isn't a [single page app][SPA];
-it's written in server side code.
+I don't want people to write everything themselves. That would be stupid. Rather, 
+the idea is to _keep it simple_. The simplest possible solution to writing a todo
+application is not a [single page app][SPA]; it's a server side implementation.
 
 'Simple' does not mean we go back to banging the bytes together in raw assembly
-code, or that we 'build our own framework' (whatever that means). In fact, we
-could probably argue all day over what exactly 'simple' means. But this project
-represents my idea of simplicity in building an web application - perhaps you'll
-agree.
+code, or that we 'build our own framework' (whatever that means). We could
+argue all day over what exactly 'simple' means. This project represents my idea
+of simplicity in building an web application - I hope you'll agree.
 
 ## Constraints
 
@@ -77,8 +75,8 @@ write a simple Todo application, and so we won't use it here.
 #### No Frameworks
 
 By 'framework' I mean software which requires certain folder structures,
-configuration files, special commands to run it, and a vague feeling that you're
-working in magickal environment in which the software you're writing is not in
+configuration files, special commands to run it, and a feeling that you're
+working in magickal environment where the software you're writing is not in
 control.
 
 It doesn't mean no libraries - feel free to import any external code (hopefully
@@ -87,7 +85,7 @@ well written and tested) to build the application.
 Put simply, "Libraries: you call them. Frameworks: they call you."
 
 This may be a controvertial definition. Please see [this Stack Overflow
-question][frameworkLibrarySO] if you want more nuance and better links
+question][frameworkLibrarySO] if you want more nuance and better links.
 
 As there is no JavaScript, there will be naturally be no front-end frameworks or
 libraries (React, Angular _et al._).
@@ -99,9 +97,8 @@ information to something with a lifespan longer than the running application. As
 it is, I've taken the decision that to do so would add a fair ammount of
 incidental complexity, and so the data is stored in memory.
 
-But, as the interface for accessing the todo information is well defined, it
-should be trivial to swap the in memory implementation out for something else
-(database, file on disk, etc.).
+But, as the interface for accessing the todo information should be well defined, it
+is trivial to swap the in memory implementation out for something else (database, file on disk, etc.).
 
 #### No Sessions
 
@@ -110,8 +107,8 @@ uniquely and associating them with the items they create. This would commonly be
 done with another data store and browser cookies.
 
 I was definitely in two minds as to whether an implementation should support
-user sessions, but in the end concluded that it would digress from the core of
-the project. I may think differently in the future.
+user sessions, but in the end concluded that it would distract from the core of
+the project. I may feel differently about this in the future.
 
 #### The same API
 
