@@ -24,7 +24,7 @@ Valuable Player_][MVPlayer] in your web development toolkit. I like to think so!
 
 ## The Todo Application
 
-The project consist (or will consist) of the following:
+The project consists (or will consist) of the following:
 
   - Many Todo applications, written in multiple languages, all
   each serving the same HTML and implementing the same API.
