@@ -32,7 +32,7 @@ STATICFILES_DIRS = [
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
-    path("/done", todo_done, name="done"),
-    path("/not-done", todo_undone, name="not-done"),
-    path("/delete", todo_delete, name="delete")
+    path("done", todo_done, name="done"),
+    path("not-done", todo_undone, name="not-done"),
+    path("delete", todo_delete, name="delete")
 ]
