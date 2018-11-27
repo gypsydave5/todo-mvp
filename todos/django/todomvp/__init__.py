@@ -4,7 +4,7 @@
 # typical server, but not here.
 import os
 
-from todomvp.views import IndexView
+from todomvp.views import IndexView, todo_done, todo_undone, todo_delete
 from django.urls import path
 
 DEBUG = True
@@ -31,5 +31,8 @@ STATICFILES_DIRS = [
 ]
 
 urlpatterns = [
-    path("", IndexView.as_view(), name="index")
+    path("", IndexView.as_view(), name="index"),
+    path("/done", todo_done, name="done"),
+    path("/not-done", todo_undone, name="not-done"),
+    path("/delete", todo_delete, name="delete")
 ]
