@@ -1,6 +1,3 @@
 {
     "python.pythonPath": "/home/solarliner/.local/share/virtualenvs/test-flask-app-VP6fqcCP/bin/python",
-    "files.associations": {
-        "*.html": "jinja-html"
-    }
 }

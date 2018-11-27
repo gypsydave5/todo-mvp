@@ -24,9 +24,52 @@
 
     <section class="items">
       <h2>Todo list</h2>
+      {% for todo in todos %}
       <ul>
-        ${todos.map(renderTodo).join('\n')}
+        {% if todo.done %}
+        <li class="todo done">
+          <span class="item-name">
+            <s>{{ todo.name }}</s>
+          </span>
+          <form method="post" action="/not-done">
+            <input type="hidden" name="item" value="{{todo.id}}" />
+            <input
+              class="uncomplete"
+              type="submit"
+              value="Mark not done '{{todo.name}}'"
+            />
+          </form>
+          <form method="post" action="/delete">
+            <input type="hidden" name="item" value="{{todo.id}}" />
+            <input
+              class="delete"
+              type="submit"
+              value="Delete '{{todo.name}}'"
+            />
+          </form>
+        </li>
+        {% else %}
+        <li class="todo">
+          <span class="item-name"> {{ todo.name }} </span>
+          <form method="post" action="/done">
+            <input type="hidden" name="item" value="{{todo.id}}" />
+            <input
+              class="complete"
+              type="submit"
+              value="Mark done '{{todo.name}}'"
+            />
+          </form>
+          <form method="post" action="/delete">
+            <input type="hidden" name="item" value="{{todo.id}}" />
+            <input
+              class="delete"
+              type="submit"
+              value="Delete '{{todo.name}}'"
+            />
+          </form>
+        </li>
       </ul>
+      {% endfor %}
     </section>
   </body>
 </html>
