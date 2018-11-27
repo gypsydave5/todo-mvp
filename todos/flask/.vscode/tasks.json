@@ -6,7 +6,8 @@
     {
       "label": "start",
       "type": "process",
-      "command": "pipenv run start"
+      "command": "pipenv run start",
+      "problemMatcher": []
     }
   ]
 }
