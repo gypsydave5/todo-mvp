@@ -2,13 +2,7 @@ from flask import render_template, redirect, url_for
 from flask.globals import request
 from todomvp import app
 
-todos = [
-    {
-        "id": 1,
-        "name": "Make TODOs Great Again",
-        "done": False
-    }
-]
+todos = []
 
 def get_next_id() -> int:
     """WARNING: Not thread-safe, and shouldn't be used in production. I'm
