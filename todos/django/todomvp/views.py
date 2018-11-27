@@ -23,7 +23,7 @@ def get_next_id() -> int:
         return max([t["id"] for t in todos]) + 1
 
 def get_todo_index(request):
-    return [t["id"] for t in todos].index(request.POST.get("item"))
+    return [t["id"] for t in todos].index(int(request.POST.get("item")))
 
 
 class IndexView(TemplateView):
