@@ -32,7 +32,7 @@
           <span class="item-name">
             <s>{{ todo.name }}</s>
           </span>
-          <form method="post" action="/not-done">
+          <form method="post" action="{% url 'not-done' %}">
             <input type="hidden" name="item" value="{{todo.id}}" />
             <input
               class="uncomplete"
@@ -40,7 +40,7 @@
               value="Mark not done '{{todo.name}}'"
             />
           </form>
-          <form method="post" action="/delete">
+          <form method="post" action="{% url 'delete' %}">
             <input type="hidden" name="item" value="{{todo.id}}" />
             <input
               class="delete"
@@ -52,7 +52,7 @@
         {% else %}
         <li class="todo">
           <span class="item-name"> {{ todo.name }} </span>
-          <form method="post" action="/done">
+          <form method="post" action="{% url 'done' %}">
             <input type="hidden" name="item" value="{{todo.id}}" />
             <input
               class="complete"
@@ -60,7 +60,7 @@
               value="Mark done '{{todo.name}}'"
             />
           </form>
-          <form method="post" action="/delete">
+          <form method="post" action="{% url 'delete' %}">
             <input type="hidden" name="item" value="{{todo.id}}" />
             <input
               class="delete"
