@@ -51,15 +51,18 @@ def todo_done(request):
     if request.method == "POST":
         idx = get_todo_index(request)
         todos[idx]["done"] = True
+    return redirect(reverse("index"))
 
 
 def todo_undone(request):
     if request.method == "POST":
         idx = get_todo_index(request)
         todos[idx]["done"] = False
+    return redirect(reverse("index"))
 
 
 def todo_delete(request):
     if request.method == "POST":
         idx = get_todo_index(request)
         del todos[idx]
+    return redirect(reverse("index"))
