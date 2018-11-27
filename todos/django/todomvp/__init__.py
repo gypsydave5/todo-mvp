@@ -18,6 +18,11 @@ TEMPLATES = [
     },
 ]
 
+INSTALLED_APPS = [
+    "django.contrib.staticfiles"
+]
+
+STATIC_URL = "/static/"
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index")
