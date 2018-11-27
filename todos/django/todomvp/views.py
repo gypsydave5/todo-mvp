@@ -3,13 +3,7 @@ from django.shortcuts import redirect, reverse
 from django.views.generic import TemplateView
 from django.views.generic.base import View
 
-todos = [
-  {
-    "id": 1,
-    "name": "Make TODOs Great Again!",
-    "done": False
-  }
-]
+todos = []
 
 
 def get_next_id() -> int:
