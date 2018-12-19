@@ -25,8 +25,7 @@
 
     <section class="items">
       <h2>Todo list</h2>
-      <ul>
-      {% for todo in todos %}
+      <ul>{% for todo in todos %}
         {% if todo.done %}
         <li class="todo done">
           <span class="item-name">
@@ -70,8 +69,7 @@
           </form>
         </li>
         {% endif %}
-      {% endfor %}
-      </ul>
+      {% endfor %}</ul>
     </section>
   </body>
 </html>
