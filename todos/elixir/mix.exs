@@ -22,7 +22,7 @@ defmodule TodoMvp.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:cowboy, "~> 2.6"}
+      {:cowboy, "~> 2.6"},
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"}
     ]
