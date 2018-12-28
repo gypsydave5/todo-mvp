@@ -18,7 +18,7 @@ defmodule TodoMvp.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: TodoMvp.Supervisor]
-    Logger.info("Starting application on port 8000.")
+    Logger.info("Starting application on port 3000.")
     Supervisor.start_link(children, opts)
   end
 end

@@ -14,7 +14,7 @@ defmodule TodoMvp.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :plug],
+      extra_applications: [:logger, :cowboy, :plug],
       mod: {TodoMvp.Application, []}
     ]
   end
@@ -22,6 +22,7 @@ defmodule TodoMvp.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:cowboy, "~> 2.6"}
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"}
     ]

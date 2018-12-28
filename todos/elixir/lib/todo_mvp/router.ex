@@ -22,7 +22,7 @@ defmodule TodoMvp.Router do
   """
   get "/" do
     response =
-      TodoMvp.list()
+      Server.list()
       |> serve_file()
 
     send_resp(conn, 200, response)
@@ -71,7 +71,7 @@ defmodule TodoMvp.Router do
   post "/delete" do
     response =
       read_response(conn)
-      |> build_response(&Server.delete/1)
+      |> build_response(&Server.remove/1)
       |> serve_file()
 
     send_resp(conn, 200, response)
@@ -82,6 +82,9 @@ defmodule TodoMvp.Router do
   """
   match(_, do: send_resp(conn, 404, "No page exists here."))
 
+  ####################
+  ##### Private ######
+  ####################
   defp read_response(conn) do
     {:ok, body, _conn} = read_body(conn)
     "item=" <> item = body
