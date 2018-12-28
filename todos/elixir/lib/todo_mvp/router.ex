@@ -1,19 +1,25 @@
 defmodule TodoMvp.Router do
+  @moduledoc """
+  Router module.
+  """
   use Plug.Router
   require EEx
 
   @template "lib/todo_mvp/template.html.eex"
 
-  plug(Plug.Static,
-    from: :todo_mvp,
-    at: "/static"
-  )
+  alias TodoMvp.Server
 
+  @doc """
+  Serve static files from /static
+  """
+  plug(Plug.Static, from: :todo_mvp, at: "/static")
   plug(Plug.Logger)
-
   plug(:match)
   plug(:dispatch)
 
+  @doc """
+  GET "/" gets the list of Todos.
+  """
   get "/" do
     response =
       TodoMvp.list()
@@ -22,47 +28,59 @@ defmodule TodoMvp.Router do
     send_resp(conn, 200, response)
   end
 
+  @doc """
+  POST "/" adds a Todo.
+  """
   post "/" do
     response =
       read_response(conn)
       |> String.replace("+", " ")
-      |> build_response(&TodoMvp.add/1)
+      |> build_response(&Server.add/1)
       |> serve_file()
 
     send_resp(conn, 200, response)
   end
 
+  @doc """
+  POST "/done" toggles a todo.
+  """
   post "/done" do
     response =
       read_response(conn)
-      |> String.to_integer()
-      |> build_response(&TodoMvp.toggle/1)
+      |> build_response(&Server.toggle/1)
       |> serve_file()
 
     send_resp(conn, 200, response)
   end
 
+  @doc """
+  POST "/not-done" toggles a todo.
+  """
   post "/not-done" do
     response =
       read_response(conn)
-      |> String.to_integer()
-      |> build_response(&TodoMvp.toggle/1)
+      |> build_response(&Server.toggle/1)
       |> serve_file()
 
     send_resp(conn, 200, response)
   end
 
+  @doc """
+  POST "/delete" deletes a todo.
+  """
   post "/delete" do
     response =
       read_response(conn)
-      |> String.to_integer()
-      |> build_response(&TodoMvp.delete/1)
+      |> build_response(&Server.delete/1)
       |> serve_file()
 
     send_resp(conn, 200, response)
   end
 
-  match(_, do: send_resp(conn, 404, "Whoops"))
+  @doc """
+  Match a 404 Page
+  """
+  match(_, do: send_resp(conn, 404, "No page exists here."))
 
   defp read_response(conn) do
     {:ok, body, _conn} = read_body(conn)
