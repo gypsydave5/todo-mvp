@@ -1,5 +1,9 @@
 {
   "features": {
     "cloud": "v2"
-  }
+  },
+  "alias": [
+    "todo-mvp.cat",
+    "todo-mvp.com"
+  ]
 }
