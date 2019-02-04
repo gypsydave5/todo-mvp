@@ -2,6 +2,6 @@
 
 You'll need Go installed.
 
-`go run todo.go`
+`go run main.go`
 
-Visit at [http://localhost:4000](http://localhost:4000)
+Visit at [http://localhost:3000](http://localhost:3000)
