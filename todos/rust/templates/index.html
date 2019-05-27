@@ -21,8 +21,10 @@
         <input type="submit" value="Add new item" id="add-new-item" />
       </form>
     </section>
+
     <section class="items">
-      <h2>Todo list</h2>
+      <h2>Todo list</h2>{% if todosLen == 0 %}
+      <ul></ul>{% else %}
       <ul>
         {% for todo in todos %} {% if todo.done %}
         <li class="todo done">
@@ -67,7 +69,7 @@
           </form>
         </li>
         {% endif %}{% endfor %}
-      </ul>
+      </ul>{% endif %}
     </section>
   </body>
 </html>
