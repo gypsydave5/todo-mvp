@@ -13,10 +13,6 @@ class TodoMVPAcceptance < Minitest::Test
     (0...8).map { (65 + rand(26)).chr }.join
   end
 
-  def strip_whitespace html
-    html.gsub(/\s+/, ' ')
-  end
-
   @@todo_name = random_string
 
   @@http = Faraday.new("http://localhost:3000") do |conn|
@@ -26,7 +22,7 @@ class TodoMVPAcceptance < Minitest::Test
   end
 
   def test_the_starting_page_has_the_right_html
-    assert_equal strip_whitespace(page.to_s), strip_whitespace(golden_master.to_s)
+    assert_equal page.to_s, golden_master.to_s
   end
 
   def test_adding_a_todo
