@@ -1,0 +1,159 @@
+:root {
+  --text-color: rgb(20, 20, 20);
+  --border-color: black;
+  --title-color: rgb(60, 60, 60);
+  --done-color: rgb(200, 200, 200);
+  --background-color: white;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 0;
+  align-content: center;
+  margin: 0;
+  font-family: sans-serif;
+  line-height: 1.3rem;
+  font-size: 24px;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+label {
+  font-size: 0.8rem;
+}
+
+input {
+  box-sizing: border-box;
+  border: var(--border-color) solid 2px;
+  background-color: var(--background-color);
+}
+
+section {
+  padding: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40rem;
+}
+
+.new-todo form {
+  display: grid;
+  grid-template-columns: auto 29px;
+  grid-template-rows: auto;
+  column-gap: 1rem;
+}
+
+.new-todo label[for="new-item"] {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 2;
+  margin: auto 1rem;
+}
+
+.new-todo input#new-item {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.new-todo form input#add-new-item {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+  margin: auto;
+}
+
+.button-container {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul:empty::after {
+  content: "You've not added any todos to the list. Use the box above to add a new todo.";
+  font-size: 1rem;
+  margin: 1rem;
+  font-style: italic;
+  border: 2px dotted black;
+  padding: 0.5rem;
+  display: block;
+  text-align: justify;
+  text-align-last: center;
+}
+
+li {
+  display: flex;
+  border-bottom: 1px dotted var(--border-color);
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li .item-name {
+  flex: auto;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+li form input,
+.new-todo form input#add-new-item {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  /* hide text */
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.todo form input {
+  margin: 1em;
+}
+
+.todo form input.delete {
+  background-image: url("trashcan.svg");
+  border: none;
+}
+input#add-new-item {
+  background-image: url("plus.svg");
+}
+.todo form input.complete {
+  background-image: none;
+}
+.todo form input.uncomplete {
+  background-image: url("check.svg");
+}
+
+.done {
+  color: var(--done-color);
+}
+
+.todo form {
+  display: contents;
+}
+
+h1 {
+  font-weight: 200;
+  color: var(--title-color);
+  margin: 2rem;
+  display: none;
+}
+
+h2 {
+  border-bottom: 1px solid black;
+  padding: 0 0 1rem 1rem;
+}
