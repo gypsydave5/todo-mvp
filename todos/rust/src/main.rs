@@ -150,7 +150,7 @@ async fn redirect_home() -> HandlerResult {
 
 async fn add_todo_handler(req: Request<Body>) -> HandlerResult {
     let body = hyper::body::to_bytes(req).await?;
-    let str_body = String::from_utf8(body.to_vec()).unwrap();
+    let str_body = String::from_utf8(body.to_vec())?;
     let words: Vec<&str> = str_body.split('=').collect();
     add_todo(Todo::new(words[1]));
     redirect_home().await
@@ -158,17 +158,17 @@ async fn add_todo_handler(req: Request<Body>) -> HandlerResult {
 
 async fn remove_todo_handler(req: Request<Body>) -> HandlerResult {
     let body = hyper::body::to_bytes(req).await?;
-    let str_body = String::from_utf8(body.to_vec()).unwrap();
+    let str_body = String::from_utf8(body.to_vec())?;
     let words: Vec<&str> = str_body.split('=').collect();
-    remove_todo(Uuid::parse_str(words[1]).unwrap());
+    remove_todo(Uuid::parse_str(words[1])?);
     redirect_home().await
 }
 
 async fn toggle_todo_handler(req: Request<Body>) -> HandlerResult {
     let body = hyper::body::to_bytes(req).await?;
-    let str_body = String::from_utf8(body.to_vec()).unwrap();
+    let str_body = String::from_utf8(body.to_vec())?;
     let words: Vec<&str> = str_body.split('=').collect();
-    toggle_todo(Uuid::parse_str(words[1]).unwrap());
+    toggle_todo(Uuid::parse_str(words[1])?);
     redirect_home().await
 }
 
