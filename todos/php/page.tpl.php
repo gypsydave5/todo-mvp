@@ -8,7 +8,7 @@
   <body>
     <h1>Todo MVP</h1>
     <section class="new-todo">
-      <form method="POST" action="/add">
+      <form method="POST" action="/">
         <input type="text"
                id="new-item"
                name="item"

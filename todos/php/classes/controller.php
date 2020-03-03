@@ -22,20 +22,12 @@ class controller
 
     /**
      * Route: / or /index
-     *
-     * @return void
-     */
-    public function index(){
-        return 'page';
-    }
-
-    /**
-     * Route: /add
+     * If a http POST has been received, add the item, otherwise list items.
      *
      * @param todo $todo
      * @return void
      */
-    public function add(todo &$todo){
+    public function index(todo &$todo){
         if (isset($this->requestPost['item'])) {
             $todo->addItem($this->requestPost['item']);
         }

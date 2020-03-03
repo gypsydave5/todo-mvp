@@ -21,7 +21,7 @@ if(empty($action)) $action = 'index';
 
 
 // Initialize todo list object.
-if ($action == 'index' || empty($_POST)) {
+if (empty($_POST) || !array_key_exists('current-list', $_POST)) {
     $todoList = new todo(); // No persistence, so we start a new instance.
 } else {
     $todoList = new todo(json_decode($_POST['current-list'], true));
