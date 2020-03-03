@@ -39,8 +39,8 @@ if ((int)method_exists($controller, $action)) {
 }
 
 // Set up values for our 'template':
-$todos = $todoList->getItems();
-$currentList = htmlspecialchars($todoList->getItemsJSON());
+$tpl_todos = $todoList->getItems();
+$tpl_currentList = htmlspecialchars($todoList->getItemsJSON());
 
 // Include our html page template, which uses the above values.
 require_once($template.'.tpl.php');

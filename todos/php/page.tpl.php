@@ -18,7 +18,7 @@
                title="3 characters minimum" />
         <input type="hidden"
                name="current-list"
-               value="<?=$currentList;?>" />
+               value="<?=$tpl_currentList;?>" />
         <input type="submit"
                value="Add new item"
                id="add-new-item"
@@ -29,7 +29,7 @@
     <section class="items">
       <h2>Todo list</h2>
       <ul><?php
-      foreach($todos as $num => $todo){
+      foreach($tpl_todos as $num => $todo){
         if ($todo['done']){ ?>
         <li class="todo done">
           <span class="item-name">
@@ -39,7 +39,7 @@
             <input type="hidden" name="item" value="<?=$num;?>"/>
             <input type="hidden"
                name="current-list"
-               value="<?=$currentList;?>" />
+               value="<?=$tpl_currentList;?>" />
             <input class="uncomplete"
                    type="submit"
                    name="mark-not-done"
@@ -49,7 +49,7 @@
             <input type="hidden" name="item" value="<?=$num;?>"/>
             <input type="hidden"
                name="current-list"
-               value="<?=$currentList;?>" />
+               value="<?=$tpl_currentList;?>" />
             <input class="delete"
                    type="submit"
                    name="delete"
@@ -65,7 +65,7 @@
             <input type="hidden" name="item" value="<?=$num;?>"/>
             <input type="hidden"
                name="current-list"
-               value="<?=$currentList;?>" />
+               value="<?=$tpl_currentList;?>" />
             <input class="complete"
                    type="submit"
                    name="mark-done"
@@ -75,7 +75,7 @@
             <input type="hidden" name="item" value="<?=$num;?>"/>
             <input type="hidden"
                name="current-list"
-               value="<?=$currentList;?>" />
+               value="<?=$tpl_currentList;?>" />
             <input class="delete"
                    type="submit"
                    name="delete"
