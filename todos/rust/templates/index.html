@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head>{%if redirect %}
+    <script>history.replaceState(history.state, undefined, "/")</script>
+    <noscript><meta http-equiv="refresh" content="0;URL='/'" /></noscript>{% endif %}
     <title>Todo MVP</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/static/todo.css" />
@@ -8,7 +10,7 @@
   <body>
     <h1>Todo MVP</h1>
     <section class="new-todo">
-      <form method="POST">
+      <form method="post">
         <input
           type="text"
           id="new-item"
@@ -26,49 +28,18 @@
       <h2>Todo list</h2>{% if todosLen == 0 %}
       <ul></ul>{% else %}
       <ul>
-        {% for todo in todos %} {% if todo.done %}
+        {% for todo in todos %}
         <li class="todo done">
           <span class="item-name">
             <s>{{ todo.name }}</s>
           </span>
-          <form method="post" action="/not-done">
+          <form method="post">
             <input type="hidden" name="item" value="{{ todo.id }}" />
-            <input
-              class="uncomplete"
-              type="submit"
-              value="Mark not done {{ todo.name }}"
-            />
+            {% if todo.done %}<input type="submit" class="uncomplete" formaction="/not-done" value="Mark not done {{ todo.name }}" />
+            {% else %}<input type="submit" class="complete" formaction="/done" value="Mark done {{ todo.name }}" />
+            {% endif %}<input type="submit" class="delete" formaction="/delete" value="Delete {{ todo.name }}" />
           </form>
-          <form method="post" action="/delete">
-            <input type="hidden" name="item" value="{{ todo.id }}" />
-            <input
-              class="delete"
-              type="submit"
-              value="Delete {{ todo.name }}"
-            />
-          </form>
-        </li>
-        {% else %}
-        <li class="todo">
-          <span class="item-name">{{ todo.name }}</span>
-          <form method="post" action="/done">
-            <input type="hidden" name="item" value="{{ todo.id }}" />
-            <input
-              class="complete"
-              type="submit"
-              value="Mark done {{ todo.name }}"
-            />
-          </form>
-          <form method="post" action="/delete">
-            <input type="hidden" name="item" value="{{ todo.id }}" />
-            <input
-              class="delete"
-              type="submit"
-              value="Delete {{ todo.name }}"
-            />
-          </form>
-        </li>
-        {% endif %}{% endfor %}
+        </li>{% endfor %}
       </ul>{% endif %}
     </section>
   </body>
